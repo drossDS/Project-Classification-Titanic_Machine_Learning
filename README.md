@@ -27,20 +27,20 @@ Data were provided with the following features for each pasenger in the inital d
 
 | Provided Feature | Used/Dropped | Ratioonale |
 | --- | :-: | ---|
-| Passenger ID | Dropped | Arbitrary value unimportant to analysis |
+| Passenger ID | Dropped | Arbitrary value irrelevant to survival |
 | Survived | Used | Necessary to know outcome for each passenger when traiing models |
 | Passenger Class (Pclass) | Used | Proved to be a significant indicator of survival |
-| Passenger Name | Dropped | Creating a model to analyze passenger names and correlate with surivival was outside of hte scope of this project |
+| Passenger Name | Dropped | Thought to be irrelevant to survival |
 | Sex | Used | Proved to be a significant indicator of survival |
-| Age | Used | Some features could be extracted from age data, and values imputed in the place of null values to improve model performance |
-| Number of Siblings or Spouses Aboard (SibSp) | Used | When applicable, this information correlated with survival |
-| Number of Parents or Children Aboard (Parch) | Used | When applicable, this information correlated with survival |
-| Ticket | Dropped | Cabin data, and class were thought to be better indiciators of survival than potentially arbitrary ticket data.  Analysis of ticket data was outside of the scope of this project |
-| Fare | Dropped | This information was thought to be the function of the Cabin and Pclass data which would better indicators of survival |
-| Cabin | Used | Correlation data showed that having a cabin assignment was one of the features most positively corerlated with survival |
-| Location of Embarkment | Used | Passengers from certain locations had higher chances of survival than others |
+| Age | Used | Some features extracted from age data were found to be useful |
+| No. Siblings/Spouses Aboard (SibSp) | Used | When applicable, this information correlated with survival |
+| No. Parents/Children Aboard (Parch) | Used | When applicable, this information correlated with survival |
+| Ticket | Dropped | Thought to be arbitrarty data.  Cabin data/class thought to be better survival |
+| Fare | Dropped | Thought to be function of cabin and class data which were better survival indicators |
+| Cabin | Used | Correlation data showed cabin assignment positively correlated with survival |
+| Embarkment Location | Used | Passengers from certain locations had higher chances of survival than others |
 
-
+Note that while it may have been possible to analyze the ticket, name, and fare data to engineer features that would correlate to survival outcomes, these activities weren ot chosen to be within the scope of this project, instead opting for simpler apporaches.  A future iteration of this project should include these feature engineer activities.
  
 
 
