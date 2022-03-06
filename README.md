@@ -95,20 +95,18 @@ The general modeling strategy for optimizing each model type was executed as fol
 - Repeat the above steps on all model types
 
 ### Model Types, Chosen Trainig Data Features, and Model Accuracies:
-The table below shows a summary of all optimized model varieties along with the initial logistic regression model, "First LR".  The features used in each model are also provided.  Note that in every training dataset for all models, the Class, Sex, SibSp, and Parch data were included, and are not shown individually in the columns below.
+The table below shows a summary of all optimized model varieties along with the initial logistic regression model, "First LR".  The features used in each model are also provided.  Note that in every training dataset for all models, the Class, Sex, SibSp, and Parch data were included, and are not shown individually in the columns below.  Both the accuracy of the models aginst the validaiton datasets and the accuracy against the full training dataset (not split into validation and traiing subsets) are provided.
 
-| Model & Type | Validation Accuracy | Full Training Accuracy | Fare | Cabin_Data | Age (Imputed) | Young |
-| --- | :-: |  :-: |  :-: |  :-: |  :-: |  :-: |
-| First LR (logistic regression) | 79.6% |79.8%| X | | | |
-| Best LR (logistic regression) | 81.5% |81.9%| | X | | X |
-| Best K-Nearest Negieghbors | 82.0% |83.7%| | X | | X |
-| Best K-Nearest Negieghbors w/Age data | 80.5% |81.9%| | X | X | |
-| Best Decision Tree w/Young | - |83.7%| | X | | X |
-| Best Decision Tree w/Age data | 81.6% |84.6%| | X | X | |
-| Best Random Forest Classifier w/Young | - |83.7%| | X | | X |
-| Best Random Forest Classifier w/Age data | 82.3% |84.7%| | X | X | |
+| Model & Type | Validation Dataset Accuracy | Fare | Cabin_Data | Age (Imputed) | Young |
+| --- | :-: |  :-: |  :-: |  :-: |  :-: |
+| First LR (logistic regression) | 79.6% | X | | | |
+| Best LR (logistic regression) | 81.5% | | X | | X |
+| Best K-Nearest Negieghbors | 82.0% | | X | | X |
+| Best K-Nearest Negieghbors w/Age data | 80.5% | | X | X | |
+| Best Decision Tree w/Age data | 81.6% | | X | X | |
+| Best Random Forest Classifier w/Age data | 82.3% | | X | X | |
 
-Across the models listed above, inconsistencies can be observed in relation to which age feature was included.  Most noteably, the Young feature was not a part of the training data for the decision tree and random forest model types, and replacing this feature with imputed age data actually had a negative impact on the accuracy of the model against the validation datasets.  A brief investigation was performed to determine if the Young feature would improve the performance of the decision tree and random forrest models.  
+Across the models listed above, inconsistencies can be observed in relation to which age feature was included.  Most noteably, the Young feature was not a part of the training data for the decision tree and random forest model types, and replacing this feature with imputed age data actually had a negative impact on the accuracy of the model against the validation datasets. An attempt was made to determine the impact of the Young feature on the decision tree and random forest classifiers by examingin the prediction accuracy against the full training dataset.  ***In a future iteration of this project, these models must be re-optimized around the training dataset with the young feature with training/validation splits for proper comparison to other models.***
 
 ## 
 
