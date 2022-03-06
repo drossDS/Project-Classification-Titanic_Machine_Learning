@@ -68,7 +68,15 @@ Four types of models were run on the provided data:
 - Random Forrest
 
 ### Exploratory Models
-Initially, a logisitic regression model was run with default parameter values and a training dataset with only the Class, Sex, Parch, SibSp, and Embarkment data.
+Initially, a logisitic regression model was run with default parameter values and a training dataset with only the Class, Sex, Parch, SibSp, Fare, and Embarkment data.  The results are shown in the confusion matrix below with an accuracy of ___ % aginast the training data.  The model was then run against 30 training and validation datasets created from the provided training data (see *Model Evaluation with ShuffleSplit* below) yielding similar average model accuracies of 79.56% and 79.61% for the training and validaiton sets respectively.
+
+*****************Show confusion matrix
+
+While not ultimately employed in this project, the charactersistics of the mis-categorized passengers from the from the initial model were examined in combination with the regression coefficients assigned to each feature.  It was shown that the model treated passenger sex as the most important characteristic in determining mortality but this resulted in a much predicted higher mortality rate for men compared to actual passenger data (97.9% versus 81.1%) and a much lower mortality rate for women than what the actual passenger data showed (3.5% versus 14.0%).  Other features such as passenger class were of lesser importnance to the model, and had they been more highly weighted during training, could have produced a more accuracte model.
+
+*******  SHow the plot of sex for miss-categorized passengers and the classs plot
+
+**From here, additional feautres were added to the training data used for the default logistic regression model and yielded improved accuracy, and the modeling process sought include hyperparaemter optimization while exploring other types of classification models.  Later, a table will show which feautres (passenger charactersistics) were included in the training data for the models examined in the following sections.**
 
 ### Model Evaluation with ShuffleSplit
 For all ombinations of hyperparameters and model varieities below, the models were evaluated based on their performance against validation datasets created from the original traiing data.  This was done to select models with reduced overfitting and better performance on unseen data.  This was done in the following manner:
