@@ -20,6 +20,31 @@ For the Kaggle competition, "Titanic - Machine Learning from Disaster," a classi
 # Supplementary Details to Project Overview
 
 
+## Inital Data Processing:
+
+Data were provided with the following features for each pasenger in the inital dataset.  The table *******
+
+
+| Provided Feature | Used/Dropped | Ratioonale |
+| --- | :-: | ---|
+| Passenger ID | Dropped | Arbitrary value unimportant to analysis |
+| Survived | Used | Necessary to know outcome for each passenger when traiing models |
+| Passenger Class (Pclass) | Used | Proved to be a significant indicator of survival |
+| Passenger Name | Dropped | Creating a model to analyze passenger names and correlate with surivival was outside of hte scope of this project |
+| Sex | Used | Proved to be a significant indicator of survival |
+| Age | Used | Some features could be extracted from age data, and values imputed in the place of null values to improve model performance |
+| Number of Siblings or Spouses Aboard (SibSp) | Used | When applicable, this information correlated with survival |
+| Number of Parents or Children Aboard (Parch) | Used | When applicable, this information correlated with survival |
+| Ticket | Dropped | Cabin data, and class were thought to be better indiciators of survival than potentially arbitrary ticket data.  Analysis of ticket data was outside of the scope of this project |
+| Fare | Dropped | This information was thought to be the function of the Cabin and Pclass data which would better indicators of survival |
+| Cabin | Used | Correlation data showed that having a cabin assignment was one of the features most positively corerlated with survival |
+| Location of Embarkment | Used | Passengers from certain locations had higher chances of survival than others |
+
+
+ 
+
+
+
 
 ## Feature Engineering
 - Presence of age data
@@ -36,6 +61,8 @@ Four types of models were run on the provided data:
 - K-Neighbors
 - Decision Tree
 - Random Forrest
+
+Initially, a logisitic regression model was run with default values
 
 ### Model Optimization
 The general modeling strategy for optimizing each model type was executed as follows:
