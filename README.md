@@ -69,7 +69,7 @@ Four types of models were run on the provided data:
 - Random Forrest
 
 ### Exploratory Models
-Initially, a logisitic regression model was run with default parameter values and a training dataset with only the Class, Sex, Parch, SibSp, Fare, and Embarkment data.  The results are shown in the confusion matrix below with an accuracy of ___ % aginast the training data.  The model was then run against 30 training and validation datasets created from the provided training data (see *Model Evaluation with ShuffleSplit* below) yielding similar average model accuracies of 79.56% and 79.61% for the training and validaiton sets respectively.
+Initially, a logisitic regression model was run with default parameter values and a training dataset with only the Class, Sex, Parch, SibSp, Fare, and Embarkment data.  The results are shown in the confusion matrix below with an accuracy of ___ % aginast the training data.  The model was then run against 30 training and validation datasets created from the provided training data (see *Model Evaluation with ShuffleSplit* below) yielding similar average model accuracies of 79.61% and 79.56% for the training and validaiton sets respectively.
 
 *****************Show confusion matrix
 
@@ -95,9 +95,16 @@ The general modeling strategy for optimizing each model type was executed as fol
 - Repeat the above steps on all model types
 
 ### Model Types, Chosen Trainig Data Features, and Validation Accuracies:
-The table below shows a summary of all optimized model varieties along with teh initial logistic regression model.  The features used in each model are also provided.  Note that in every training dataset for all models, the Class, Sex, SibSp, and Parch data were included, and are not shown individually in the columns below.
+The table below shows a summary of all optimized model varieties along with the initial logistic regression model, "First LR".  The features used in each model are also provided.  Note that in every training dataset for all models, the Class, Sex, SibSp, and Parch data were included, and are not shown individually in the columns below.
 
-
+| Model & Type | Validation Accuracy | Fare | Cabin_Data | Age (Imputed) | Young |
+| --- | :-: |  :-: |  :-: |  :-: |  :-: |
+| First LR (logistic regression) | 79.6% | X | | | |
+| Best LR (logistic regression) | 81.5% | | X | | X |
+| Best K-Nearest Negieghbors | 82.0% | | X | | X |
+| Best K-Nearest Negieghbors w/Age data | 80.5% | | X | X | |
+| Best Decision Tree w/Age data | 81.6% | | X | X | |
+| Best Random Forest Classifier w/Age data | 82.3% | | X | X | |
 
 ****Some table showing which features were used in a each model and the resulting accruacy....
 
