@@ -20,19 +20,18 @@ For the Kaggle competition, "Titanic - Machine Learning from Disaster," a classi
 # Supplementary Details to Project Overview
 
 
-## Inital Data Processing:
+## Inital Data, Exploratory Analysis, and Feature Engineering:
 
-Data were provided with the following features for each pasenger in the inital dataset.  The table *******
-
+A training dataset was provided for 891 passengers aboard the Titanic with the following features for each pasenger in the inital dataset.  The table below provides the each feature along with information on whether or not it was used in the model, and the rationale behind that decision as later informed by exploratory analysis and feature engineering.
 
 | Provided Feature | Used/Dropped | Ratioonale |
-| --- | :-: | ---|
+| --- | --- | ---|
 | Passenger ID | Dropped | Arbitrary value irrelevant to survival |
 | Survived | Used | Necessary to know outcome for each passenger when traiing models |
 | Passenger Class (Pclass) | Used | Proved to be a significant indicator of survival |
 | Passenger Name | Dropped | Thought to be irrelevant to survival |
-| Sex | Used | Proved to be a significant indicator of survival |
-| Age | Used | Some features extracted from age data were found to be useful |
+| Passenger Sex | Used | Proved to be a significant indicator of survival |
+| Passenger Age | Used | Some features extracted from age data were found to be useful |
 | No. Siblings/Spouses Aboard (SibSp) | Used | When applicable, this information correlated with survival |
 | No. Parents/Children Aboard (Parch) | Used | When applicable, this information correlated with survival |
 | Ticket | Dropped | Thought to be arbitrarty data.  Cabin data/class thought to be better survival |
@@ -41,13 +40,16 @@ Data were provided with the following features for each pasenger in the inital d
 | Embarkment Location | Used | Passengers from certain locations had higher chances of survival than others |
 
 Note that while it may have been possible to analyze the ticket, name, and fare data to engineer features that would correlate to survival outcomes, these activities weren ot chosen to be within the scope of this project, instead opting for simpler apporaches.  A future iteration of this project should include these feature engineer activities.
- 
 
 
+### Exploratory Data Analysis and Feature Engineering
+The following onbsevations were made of the provided data with supporting plots below:
+- ***Sex***: Men had a much higher mortailty rate than women
+- ***Passenger Class***: Chances of survival decreased with increasing class with the majority of first class passengers surviving and the majorioty of third class passengers perishing.  Due to this trend, it was ultiimately decided that the pasenger class could be treated as a numerical variable despite being categorical in nature.
+- ***Parch (parents and children) and SibSp (Siblings and spouses)***: From the plots below it can be seen that passengers with no parents, children, siblings, or spouses tended to represent the maojority of the two categories and had much higher mortailty rates.  With this, it was decided that this data would be useful.  While these features were treated as numerical variables in this project, a future iteration should probably treat them as cetagorical as both Parch and SibSp are actually a combination of two distinctly separate features.
 
 
-## Feature Engineering
-- Presence of age data
+***Passenger Age***: Only 714 of the 891 passengers had recorded age data. A binary feature was introduced to indicate the presence of age data or lack thereof.
 - Presence of Cabin data
 - "Young" age data
 
