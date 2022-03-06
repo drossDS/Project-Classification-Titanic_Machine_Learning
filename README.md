@@ -43,13 +43,17 @@ Note that while it may have been possible to analyze the ticket, name, and fare 
 
 
 ### Exploratory Data Analysis and Feature Engineering
-The following onbsevations were made of the provided data with supporting plots below:
+The following obsevations were made of the provided features with supporting plots below:
 - ***Sex***: Men had a much higher mortailty rate than women
 - ***Passenger Class***: Chances of survival decreased with increasing class with the majority of first class passengers surviving and the majorioty of third class passengers perishing.  Due to this trend, it was ultiimately decided that the pasenger class could be treated as a numerical variable despite being categorical in nature.
 - ***Parch (parents and children) and SibSp (Siblings and spouses)***: From the plots below it can be seen that passengers with no parents, children, siblings, or spouses tended to represent the maojority of the two categories and had much higher mortailty rates.  With this, it was decided that this data would be useful.  While these features were treated as numerical variables in this project, a future iteration should probably treat them as cetagorical as both Parch and SibSp are actually a combination of two distinctly separate features.
 
+******* Show the 4 plots above here
 
-***Passenger Age***: Only 714 of the 891 passengers had recorded age data. A binary feature was introduced to indicate the presence of age data or lack thereof.
+The following features were created from the provided data:
+- ***Passenger Age***: Only 714 of the 891 passengers had recorded age data. This particular ffeature was used in different ways for certain models:
+  - A binary feature (Age_data) was introduced to indicate the presence of age data or a lack thereof
+  - When examining age data, it could be seen that younger passengers appeared to have a higher chance or survival. Analysis was performed to investigate how young a passenger needed to be in order to have a disticntly higher chance of survival. To do this, the ratio of passengers from a cumulative age group (ages 0 to n) that survived to those from that same age group that perished was plotted.  It could be seen that age nine was the age which all younger passengers appeared to be twice as likely to survive.  From this, a binary feature named "Young" was introduced for passengers whose recorded age was under nine years old.  Passengers with ages recorded to be younger than 9 were ecnoded as a 1, while older passengers and passngers without recorded age data were encoded as 0.  To verify the statistical significance of this finding, a probability mass fucntion was used to determine the likelyhood that 38 out of the 62 passengers below age nine would survive when the death rate of all titanic passengers was 68 percent assuming that all passengers had an equal chance or survival.  With the chances of this happening being 1.5/1,000,000 it was determined that there was a correlation between age 
 - Presence of Cabin data
 - "Young" age data
 
