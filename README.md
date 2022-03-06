@@ -56,6 +56,7 @@ The following features were created from the provided data:
   - A binary feature (Age_data) was introduced to indicate the presence of age data or a lack thereof
   - When examining age data, it could be seen that younger passengers appeared to have a higher chance or survival. Analysis was performed to investigate how young a passenger needed to be in order to have a disticntly higher chance of survival. To do this, the ratio of passengers from a cumulative age group (ages 0 to n) that survived to those from that same age group that perished was plotted.  It could be seen that age nine was the age which all younger passengers appeared to be twice as likely to survive.  From this, a binary feature named "Young" was introduced for passengers whose recorded age was under nine years old.  Passengers with ages recorded to be younger than 9 were ecnoded as a 1, while older passengers and passngers without recorded age data were encoded as 0.  To verify the statistical significance of this finding, a probability mass fucntion was used to determine the likelyhood that 38 out of the 62 passengers below age nine would survive when the death rate of all titanic passengers was 68 percent assuming that all passengers had an equal chance or survival.  With the chances of this happening being 1.5/1,000,000 it was determined that the null hypothesis that passengers of all ages having an equal chance of survival could be rejected and that there was a significant correlation between a young age and survival
 
+***********Show some plots here
 
 ## 
 
