@@ -41,7 +41,6 @@ A training dataset was provided for 891 passengers aboard the Titanic with the f
 
 Note that while it may have been possible to analyze the ticket, name, and fare data to engineer features that would correlate to survival outcomes, these activities weren ot chosen to be within the scope of this project, instead opting for simpler apporaches.  A future iteration of this project should include these feature engineer activities.
 
-
 ### Exploratory Data Analysis and Feature Engineering
 The following obsevations were made of the provided features with supporting plots below:
 - ***Sex***: Men had a much higher mortailty rate than women
@@ -73,10 +72,18 @@ Initially, a logisitic regression model was run with default values
 ### Model Optimization
 The general modeling strategy for optimizing each model type was executed as follows:
 - Run a baseline model with default parameters to esablish an initial performance benchmark
-- Perform a "Coarse Parameter Optimization" with gridsearchCV to run the model on every cobination of a wide range of hyperparameter values
-- Perform a "Fine Tuning" optimization where the hyperparameter ranges are much smaller and centered around the best performing hyperparameter combinations from the coast optimization step
+- Perform a "Coarse Parameter Optimization" with GridSearchCV to run the model on every cobination of a wide range of hyperparameter values
+- Perform a "Fine Tuning" optimization where the hyperparameter ranges are much smaller and centered around the best performing hyperparameter combinations (those producing ithe best model accuracy against validation datasets, explained below) from the coarse optimization step
 - The best performing hyperparameters from the fine tuning step were then used to run the final model for the paricular model type and output a final prediction of the validation data
 - Repeat the above steps on all model types
 
 ### Model Evaluation with ShuffleSplit
+For all ombinations of hyperparameters and model varieities above, the models were evaluated based on their performance against validation datasets created from the original traiing data.  This was done to select models with reduced overfitting and better performance on unseen data.  This was done in the following manner:
+- The "ShuffleSplit" function was used to break the training data into 30 randomized training and validation datasets where 30% of the data for each split was allocated to the validation set
+- The cross-validation funciton within GridSearchCV was set to employ the ShuffleSplit function and run each moel iteration through the same 30 training and validation splits
+- For each model iteration, the average model accuracy against the 30 training and validation datasets was reported
+- The model with the highest accuracy against the validation data was selected as the "best" model and either selected for further optimization or as the final model for a particular model type
+
+
+
 
