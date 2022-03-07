@@ -3,20 +3,6 @@
 
 For the Kaggle competition, "Titanic - Machine Learning from Disaster," a classification model was developed to determine the outcome (survival or death) of passengers on the Titanic based on personal information such as the passenger gender, age, class, and other categorical and numerical variables.  Datasets were provided by Kaggle and included a training dataset with passenger outcomes model fitting and a test dataset on which to run the model and submit the results for the competition.<br>
 
-### Major Accomplishments:
-- Performed exploratory data analysis (EDA) on passenger data to find trends and inform feature engineering
-- Employed hypothesis testing to validate the statistical significance of engineered features
-- Examined the performance of Logistic Regression, K-Neighbors, Decision Tree, and Random Forest Classifier models
-- Used sklearn GridSearchCV to optimize models to increase model accuracy
-- Generated training and validation sets using sklearn ShuffleSplit to simulate the effects of unseen data and reduce overfitting<br><br>
-
-### Key Outcomes:
-- A random forest classifier model was chosen with a predicted accuracy of about 82% based on validation data
-- The chosen random forest model predicted the test data with a 77.3% accuracy
-  - Next steps and model refinements are proposed in the code to improve this closer to the 82% prediction accuracy achieved on the validation datasets
-
----
-
 # Supplementary Details to Project Overview
 
 
@@ -125,3 +111,10 @@ With the selected model, the process of predicting the outcomes of the previousl
 - In the prcoess of troublshooting the model and submitting multiple additional passenger predictions, it was discovered that the prediction accuracy of the model was highly variable even without any parameters of the model chaning
 - It was eventually determined that the "random state" parameters in the various functions used in this model were not set to a constant value.  Further, changing the random state parameter for the random forest classifier algorithm itself caused the model predictions to vary drastically for the same model on the test data
 - As a simple test of model vairability, the final model was run with a range random forest values from 0 to 29 and output pasenger predictions for both the passengers in the training dataset and the test dataset.  On the training dataset, the model predicted that between 30.8% and 34.3% of the passengers would survive across all random state values.  However, the test data results predicted that between 32.8% and 46.2% of the passengers would survive.  Thus, the model's performance on the test data was far more variable than on the training data.
+
+## Next Steps and POssible Model Refinements
+Further investigation of model variability is required.  In addition, the attached code also point out the following areas to focus on in future iterations of this project:
+- Prgressively adding features to track model performance and understand feature importance
+- Invest more effort into feature engineering and supporting data analysis
+- Treat some of the numerical featerus like class as categorical and not numerical data
+- Try additional model varieties and techniques such as support vector machines and gradient boosting
