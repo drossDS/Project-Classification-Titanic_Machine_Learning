@@ -94,7 +94,7 @@ The general modeling strategy for optimizing each model type was executed as fol
 - The best performing hyperparameters from the fine tuning step were then used to run the final model for the paricular model type and output a final prediction of the validation data
 - Repeat the above steps on all model types
 
-### Model Types, Chosen Trainig Data Features, and Model Accuracies:
+### Model Comparison and Selection
 The table below shows a summary of all optimized model varieties along with the initial logistic regression model, "First LR".  The features used in each model are also provided.  Note that in every training dataset for all models, the Class, Sex, SibSp, and Parch data were included, and are not shown individually in the columns below.  Both the accuracy of the models aginst the validaiton datasets and the accuracy against the full training dataset (not split into validation and traiing subsets) are provided.
 
 | Model & Type | Validation Dataset Accuracy | Fare | Cabin_Data | Age (Imputed) | Young |
@@ -108,6 +108,11 @@ The table below shows a summary of all optimized model varieties along with the 
 
 Across the models listed above, inconsistencies can be observed in relation to which age feature was included.  Most noteably, the Young feature was not a part of the training data for the decision tree and random forest model types, and replacing this feature with imputed age data actually had a negative impact on the accuracy of the model against the validation datasets. An attempt was made to determine the impact of the Young feature on the decision tree and random forest classifiers by examingin the prediction accuracy against the full training dataset.  ***In a future iteration of this project, these models must be re-optimized around the training dataset with the young feature with training/validation splits for proper comparison to other models.***
 
-## 
+Given its highest accuracy on the validation data above, the optimized random forest model using training data with the imputed age data was selected to predict the passenger test dataset.  The entire training dataset with the correct features was then used to train the selected model to predict the test dataset provided by Kaggle.
 
+## Passenger Test Dataset, Predictions, Results, and Analysis
+With the selected model, the process of predicting the outcomes of the previously unseen 418 passengers in the test data provided was performed as follows.  Note that being a KAggle competition, the actual passenger outcomes were provided, and the only feedback on the model performance against the test data was a single accuracy score provided after the model predicitons were submitted.
+- The test data were examined to ensure that they were sufficiently similar to the original training data to be properly processed by the model
+- The necessary features were removed/added and data imputed to test data in a manner consistent with the training data used to fit the selected model
+- Predictions from the optimized random forest classifier model were submitted and yielded a reported accraucy of only around 70%
 
