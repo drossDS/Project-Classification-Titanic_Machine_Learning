@@ -110,9 +110,10 @@ Across the models listed above, inconsistencies can be observed in relation to w
 
 Given its highest accuracy on the validation data above, the optimized random forest model using training data with the imputed age data was selected to predict the passenger test dataset.  The entire training dataset with the correct features was then used to train the selected model to predict the test dataset provided by Kaggle.
 
-## Passenger Test Dataset, Predictions, Results, and Analysis
+## Passenger Test Dataset, Predictions, Results, and Post-Submission Analysis
 With the selected model, the process of predicting the outcomes of the previously unseen 418 passengers in the test data provided was performed as follows.  Note that being a KAggle competition, the actual passenger outcomes were provided, and the only feedback on the model performance against the test data was a single accuracy score provided after the model predicitons were submitted.
 - The test data were examined to ensure that they were sufficiently similar to the original training data to be properly processed by the model
 - The necessary features were removed/added and data imputed to test data in a manner consistent with the training data used to fit the selected model
-- Predictions from the optimized random forest classifier model were submitted and yielded a reported accraucy of only around 70%
-
+- Predictions from the optimized random forest classifier model were submitted and yielded a reported accraucy of only around 70%, whihc is far lower than the predicted 82% on the validation data
+- A more intense examination of the test data showed that the composition of values for each feature (passenger characterissit) were statistically similar to the training dataset, and in the same proportions.  In other words, the propertions of men to women, each of the classes, and different values of all other featuers were nearly identical
+- In the prcoess of troublshooting the model and submitting multiple additional passenger predictions, it was discovered that the prediction accuracy of the model was highly variable.  THe variability was mcuh higher on subsequent predictions of the test data than on the predictions of the validation datasets
