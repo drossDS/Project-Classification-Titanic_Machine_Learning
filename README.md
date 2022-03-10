@@ -1,13 +1,12 @@
 # Titanic Survival Model
 ***Implementing Classification Techniques to Predict Passenger Survival***
 
-For the Kaggle competition, "Titanic - Machine Learning from Disaster," a classification model was developed to determine the outcome (survival or death) of passengers on the Titanic based on personal information such as the passenger gender, age, class, and other categorical and numerical variables.  Datasets were provided by Kaggle and included a training dataset with passenger outcomes model fitting and a test dataset on which to run the model and submit the results for the competition.<br>
+## Background and Problem Statement
 
-# Supplementary Details to Project Overview
-
+(EDIT THIS SECTION)
+For the Kaggle competition, "Titanic - Machine Learning from Disaster," a classification model was developed to determine the outcome (survival or death) of passengers on the Titanic based on personal information such as the passenger gender, age, class, and other categorical and numerical variables.  Datasets were provided by Kaggle and included a training dataset with passenger outcomes for model fitting, and a test dataset on which to run the model and submit the results for the competition.<br>
 
 ## Inital Data, Exploratory Analysis, and Feature Engineering:
-
 A training dataset was provided for 891 passengers aboard the Titanic with the following features for each pasenger in the inital dataset.  The table below provides the each feature along with information on whether or not it was used in the model, and the rationale behind that decision as later informed by exploratory analysis and feature engineering.
 
 | Provided Feature | Used/Dropped | Ratioonale |
@@ -104,13 +103,16 @@ With the selected model, the process of predicting the outcomes of the previousl
 - Upon the completion of post-submission analysis described below, the model was modified to attain an improved acruay of 77.3%
 
 ## Post-submission Model Analysis
+***Note:  What is discussed in this section is a "guess-and-check" method to try to uncover some of the root causes behind the model's poor performance.***
+***It is understood that this is not a legitimate means of model refinement as the true classifications of unseen data typically remain unknown.***
 - A more intense examination of the test data showed that the composition of values for each feature (passenger characterissit) were statistically similar to the training dataset, and in the same proportions.  In other words, the propertions of men to women, each of the classes, and different values of all other featuers were nearly identical
 
 **************Show test and train data plots here
 
 - In the prcoess of troublshooting the model and submitting multiple additional passenger predictions, it was discovered that the prediction accuracy of the model was highly variable even without any parameters of the model chaning
 - It was eventually determined that the "random state" parameters in the various functions used in this model were not set to a constant value.  Further, changing the random state parameter for the random forest classifier algorithm itself caused the model predictions to vary drastically for the same model on the test data
-- As a simple test of model vairability, the final model was run with a range random forest values from 0 to 29 and output pasenger predictions for both the passengers in the training dataset and the test dataset.  On the training dataset, the model predicted that between 30.8% and 34.3% of the passengers would survive across all random state values.  However, the test data results predicted that between 32.8% and 46.2% of the passengers would survive.  Thus, the model's performance on the test data was far more variable than on the training data.
+- As a simple test of model vairability, the final model was run with a range random forest values from 0 to 29 and output pasenger predictions for both the passengers in the training dataset and the test dataset.  On the training dataset, the model predicted that between 30.8% and 34.3% of the passengers would survive across all random state values.  However, the test data results predicted that between 32.8% and 46.2% of the passengers would survive.  Thus, the model's performance on the test data was far more variable than on the training data
+- The model was resubmitted several times, and a random state of 6 was found to provide an improved
 
 ## Next Steps and POssible Model Refinements
 Further investigation of model variability is required.  In addition, the attached code also point out the following areas to focus on in future iterations of this project:
