@@ -108,7 +108,7 @@ With the selected model, the process of predicting the outcomes of the previousl
 ***It is understood that this is not a legitimate means of model refinement as the true classifications of unseen data typically remain unknown.***
 - A more intense examination of the test data showed that the composition of values for each feature (passenger characterissit) were statistically similar to the training dataset, and in the same proportions.  In other words, the propertions of men to women, each of the classes, and different values of all other featuers were nearly identical
 
-**************Show test and train data plots here
+![](Images/Sex_Train_vs_Test.png)
 
 - In the prcoess of troublshooting the model and submitting multiple additional passenger predictions, it was discovered that the prediction accuracy of the model was highly variable even without any parameters of the model chaning
 - It was eventually determined that the "random state" parameters in the various functions used in this model were not set to a constant value.  Further, changing the random state parameter for the random forest classifier algorithm itself caused the model predictions to vary drastically for the same model on the test data
