@@ -79,9 +79,9 @@ The general modeling strategy for optimizing each model type was executed as fol
 - Repeat the above steps on all model types
 
 ### Model Comparison and Selection
-The table below shows a summary of all optimized model varieties along with the initial logistic regression model, "First LR".  The features used in each model are also provided.  Note that in every training dataset for all models, the Class, Sex, SibSp, and Parch data were included, and are not shown individually in the columns below.  Both the accuracy of the models aginst the validaiton datasets and the accuracy against the full training dataset (not split into validation and traiing subsets) are provided.
+The table below shows a summary of all optimized model varieties along with the initial logistic regression model, "First LR".  The features used in each model are also provided.  Note that in every training dataset for all models, the Class, Sex, SibSp, and Parch data were included, and are not shown individually in the columns below.  The average accuracy of the models aginst the validaiton datasets are provided.
 
-| Model & Type | Validation Dataset Accuracy | Fare | Cabin_Data | Age (Imputed) | Young |
+| Model & Type | Avg. Validation Dataset Accuracy | Fare | Cabin_Data | Age (Imputed) | Young |
 | --- | :-: |  :-: |  :-: |  :-: |  :-: |
 | First LR (logistic regression) | 79.6% | X | | | |
 | Best LR (logistic regression) | 81.5% | | X | | X |
@@ -90,32 +90,32 @@ The table below shows a summary of all optimized model varieties along with the 
 | Best Decision Tree w/Age data | 81.6% | | X | X | |
 | Best Random Forest Classifier w/Age data | 82.3% | | X | X | |
 
-Across the models listed above, inconsistencies can be observed in relation to which age feature was included.  Most noteably, the Young feature was not a part of the training data for the decision tree and random forest model types, and replacing this feature with imputed age data actually had a negative impact on the accuracy of the model against the validation datasets. An attempt was made to determine the impact of the Young feature on the decision tree and random forest classifiers by examingin the prediction accuracy against the full training dataset.  ***In a future iteration of this project, these models must be re-optimized around the training dataset with the young feature with training/validation splits for proper comparison to other models.***
+Across the models listed above, inconsistencies can be observed in relation to which age feature was included.  Most noteably, the Young feature was not a part of the training data for the decision tree and random forest model types.  In some initial experimentation with these models (not provided in the code), it was demostrated that the imputed age data resulted in a higher accuracy for these model types.  ***In a future iteration of this project, these models must be re-optimized around the training dataset with the young feature with training/validation splits for proper comparison to other models.***
 
-Given its highest accuracy on the validation data above, the optimized random forest model using training data with the imputed age data was selected to predict the passenger test dataset.  The entire training dataset with the correct features was then used to train the selected model to predict the test dataset provided by Kaggle.
+The optimized random forest model using training data with the imputed age data predicted padssenger outcomes with the highest accuracy and was selected to predict the passenger test dataset.  The original training dataset (not split into training and validation sets) was processed to include the correct features and then used to train the selected model. After training, the model was then used to predict the out comes of the passengers in the test dataset provided by Kaggle.
 
 ## Passenger Test Dataset, Predictions, and Results
-With the selected model, the process of predicting the outcomes of the previously unseen 418 passengers in the test data provided was performed as follows.  Note that being a KAggle competition, the actual passenger outcomes were provided, and the only feedback on the model performance against the test data was a single accuracy score provided after the model predicitons were submitted.
+With the selected model, the process of predicting the outcomes of the previously unseen 418 passengers in the test data was performed as provided below.  (*Note that being a Kaggle competition, the actual passenger outcomes for the test data were ***not*** provided.  Only a single accuracy score was provided after the model predicitons were submitted.
 - The test data were examined to ensure that they were sufficiently similar to the original training data to be properly processed by the model
 - The necessary features were removed/added and data imputed to test data in a manner consistent with the training data used to fit the selected model
 - Predictions from the optimized random forest classifier model were submitted and yielded a reported accraucy of only around 70%, which is far lower than the predicted 82% on the validation data
 - Upon the completion of post-submission analysis described below, the model was modified to attain an improved acruay of 77.3%
 
 ## Post-submission Model Analysis
-***Note:  What is discussed in this section is a "guess-and-check" method to try to uncover some of the root causes behind the model's poor performance.***
+***Note:  What is discussed in this section is a "guess-and-check" method to try to uncover some of the root causes behind the model's poor performance, and inform better practices for future classification models.***
 ***It is understood that this is not a legitimate means of model refinement as the true classifications of unseen data typically remain unknown.***
-- A more intense examination of the test data showed that the composition of values for each feature (passenger characterissit) were statistically similar to the training dataset, and in the same proportions.  In other words, the propertions of men to women, each of the classes, and different values of all other featuers were nearly identical
+- A more intense examination of the test data showed that the composition of values for each feature (passenger characterissit) were statistically similar to the training dataset, and in the same proportions.  In other words, the proportions of men to women, each of the classes, and proportions of all other featuers were nearly identical to the training data
 
 ![](Images/Sex_Train_vs_Test.png)
 
-- In the prcoess of troublshooting the model and submitting multiple additional passenger predictions, it was discovered that the prediction accuracy of the model was highly variable even without any parameters of the model chaning
-- It was eventually determined that the "random state" parameters in the various functions used in this model were not set to a constant value.  Further, changing the random state parameter for the random forest classifier algorithm itself caused the model predictions to vary drastically for the same model on the test data
-- As a simple test of model vairability, the final model was run with a range random forest values from 0 to 29 and output pasenger predictions for both the passengers in the training dataset and the test dataset.  On the training dataset, the model predicted that between 30.8% and 34.3% of the passengers would survive across all random state values.  However, the test data results predicted that between 32.8% and 46.2% of the passengers would survive.  Thus, the model's performance on the test data was far more variable than on the training data
-- The model was resubmitted several times, and a random state of 6 was found to provide an improved
+- In the process of troublshooting the model and submitting multiple additional passenger predictions, it was discovered that the prediction accuracy of the model was highly variable even without any parameters of the model changing
+- It was eventually determined that the "random state" parameters in the various functions used in this model were not set to a constant value (thus, allowing the model to provide different results each time it was run).  Further, changing the random state parameter for the random forest classifier algorithm itself caused the model predictions to vary drastically for the same model on the test data
+- As a simple test of model vairability, the final model was run on both the training and test datasets over a range of random state values set from 0 to 29.  The passenger predictions for both the training and test dataset were then compared.  On the training dataset, the model predicted that between 30.8% and 34.3% of the passengers would survive across all random state values.  However, the test data results predicted that between 32.8% and 46.2% of the passengers would survive.  Thus, the model's performance on the test data was far more variable than on the training data 
+- The model was resubmitted several times, and a random state of 6 was found to provide an improved accuracy
 
 ## Next Steps and POssible Model Refinements
-Further investigation of model variability is required.  In addition, the attached code also point out the following areas to focus on in future iterations of this project:
-- Prgressively adding features to track model performance and understand feature importance
+Further investigation of model variability is required.  In addition, the following areas should be explored in future iterations of this project and other classiciation models:
+- Progressively add features to track model performance and understand feature importance
 - Invest more effort into feature engineering and supporting data analysis
-- Treat some of the numerical featerus like class as categorical and not numerical data
+- Treat some of the numerical features like class as categorical and not numerical data
 - Try additional model varieties and techniques such as support vector machines and gradient boosting
