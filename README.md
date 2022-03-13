@@ -2,14 +2,12 @@
 ***Implementing Classification Techniques to Predict Passenger Survival***
 
 ## Background and Problem Statement
-
-(EDIT THIS SECTION)
 For the Kaggle competition, "Titanic - Machine Learning from Disaster," a classification model was developed to determine the outcome (survival or death) of passengers on the Titanic based on personal information such as the passenger gender, age, class, and other categorical and numerical variables.  Datasets were provided by Kaggle and included a training dataset with passenger outcomes for model fitting, and a test dataset on which to run the model and submit the results for the competition.<br>
 
 ## Inital Data, Exploratory Analysis, and Feature Engineering:
-A training dataset was provided for 891 passengers aboard the Titanic with the following features for each pasenger in the inital dataset.  The table below provides the each feature along with information on whether or not it was used in the model, and the rationale behind that decision as later informed by exploratory analysis and feature engineering.
+A training dataset was provided for 891 passengers aboard the Titanic with a variety of chjaracteristics (features) for each pasenger in the inital dataset.  The table below provides each feature along with information on whether or not it was used in the final model, along with the rationale behind the decision to include or exclude the feature.
 
-| Provided Feature | Used/Dropped | Ratioonale |
+| Provided Feature | Used/Dropped | Rationale |
 | --- | --- | ---|
 | Passenger ID | Dropped | Arbitrary value irrelevant to survival |
 | Survived | Used | Necessary to know outcome for each passenger when traiing models |
@@ -24,7 +22,7 @@ A training dataset was provided for 891 passengers aboard the Titanic with the f
 | Cabin | Used | Correlation data showed cabin assignment positively correlated with survival |
 | Embarkment Location | Used | Passengers from certain locations had higher chances of survival than others |
 
-Note that while it may have been possible to analyze the ticket, name, and fare data to engineer features that would correlate to survival outcomes, these activities weren ot chosen to be within the scope of this project, instead opting for simpler apporaches.  A future iteration of this project should include these feature engineer activities.
+Note that while it may have been possible to analyze the ticket, name, and fare data to create engineered features that would correlate to survival outcomes, these activities were not explored in this project for simplicity.  A future iteration of this project should include these feature engineer activities.
 
 ### Exploratory Data Analysis and Feature Engineering
 The following obsevations were made of the provided features with supporting plots below:
@@ -40,10 +38,10 @@ The following features were created from the provided data:
 ![](Images/Cabin_data.png)
 
 
-- ***Passenger Age***: Only 714 of the 891 passengers had recorded age data. This particular ffeature was used in different ways for certain models:
+- ***Passenger Age***: Only 714 of the 891 passengers had recorded age data. This particular feature was used in different ways for certain models:
   - A binary feature (Age_data) was introduced to indicate the presence of age data or a lack thereof
-  - In some models, the age feature was used with the passenger ages mainted as numerical data and a value of 1000 imputed as the age for passengers with missing age data.  This high number was chosen somewhat arbitrarily, but was chosen to be outside of the range of possible passenger ages so as to minimize the impact to any age trends present in the data
-  - When examining age data, it could be seen that younger passengers appeared to have a higher chance or survival. Analysis was performed to investigate how young a passenger needed to be in order to have a disticntly higher chance of survival. To do this, the ratio of passengers from a cumulative age group (ages 0 to n) that survived to those from that same age group that perished was plotted.  It could be seen that age nine was the age which all younger passengers appeared to be twice as likely to survive.  From this, a binary feature named "Young" was introduced for passengers whose recorded age was under nine years old.  Passengers with ages recorded to be younger than 9 were ecnoded as a 1, while older passengers and passngers without recorded age data were encoded as 0.  To verify the statistical significance of this finding, a probability mass fucntion was used to determine the likelyhood that 38 out of the 62 passengers below age nine would survive when the death rate of all titanic passengers was 68 percent assuming that all passengers had an equal chance or survival.  With the chances of this happening being .00015% it was determined that the null hypothesis that passengers of all ages having an equal chance of survival could be rejected and that there was a significant correlation between a young age and survival
+  - In some models examined, the passenger ages were kept and a value of 1000 imputed as the age for passengers with missing age data.  This high number was chosen somewhat arbitrarily, but was chosen to be outside of the range of possible passenger ages so as to minimize the impact to any age trends present in the data
+  - When examining age data, it could be seen that younger passengers appeared to have a higher chance or survival. Analysis was performed to investigate how young a passenger needed to be in order to have a disticntly higher chance of survival. To do this, the ratio of passengers from a cumulative age group (ages 0 to n) that survived to those from that same age group that perished was plotted.  It could be seen that age nine was the age which all younger passengers appeared to be twice as likely to survive.  From this, a binary feature named "Young" was introduced for passengers whose recorded age was under nine years old.  Passengers with ages recorded to be younger than 9 were ecnoded as a 1, while older passengers and passngers without recorded age data were encoded as 0.  To verify the statistical significance of this finding, a probability mass fucntion was used to determine the likelyhood that 38 out of the 62 passengers below age nine would survive given the null hypothesis that all passengers had an equal chance or survival at 68% (equal to the overallpercentage of passengers who died on the Titanic.  With the chances of this happening being .00015%, it was determined that this null hypothesis could be rejected and that there was a significant correlation between a young age and survival
 
 ![](Images/Age_Distro_Swarm_small.png)  ![](Images/Survival_Ratio_vs_Cumulative_Age_Group.png)
 
@@ -59,14 +57,14 @@ Initially, a logisitic regression model was run with default parameter values an
 
 ![](Images/First_LR_CNFSN.png)
 
-While not ultimately employed in this project, the charactersistics of the mis-categorized passengers from the from the initial model were examined in combination with the regression coefficients assigned to each feature.  It was shown that the model treated passenger sex as the most important characteristic in determining mortality but this resulted in a much predicted higher mortality rate for men compared to actual passenger data (97.9% versus 81.1%) and a much lower mortality rate for women than what the actual passenger data showed (3.5% versus 14.0%).  Other features such as passenger class were of lesser importnance to the model, and had they been more highly weighted during training, could have produced a more accuracte model.
+The charactersistics of the mis-categorized passengers from the from the initial model were examined in combination with the regression coefficients assigned to each feature.  It was shown that the model treated passenger sex as the most important characteristic in determining mortality but this resulted in a much predicted higher mortality rate for men compared to actual passenger data (97.9% versus 81.1%) and a much lower mortality rate for women than what the actual passenger data showed (3.5% versus 14.0%).  Other features such as passenger class were of lesser importnance to the model, and had they been more highly weighted during training, could have produced a more accuracte model.
 
 ![](Images/Sex_plot_MisCat.png)
 
-**From here, additional feautres were added to the training data used for the default logistic regression model and yielded improved accuracy, and the modeling process sought include hyperparaemter optimization while exploring other types of classification models.  Later, a table will show which feautres (passenger charactersistics) were included in the training data for the models examined in the following sections.**
+**From here, additional feautres were added to the training data used for the default logistic regression model and yielded improved accuracy, and the modeling process sought include hyperparaemter optimization while exploring other types of classification models.  Later, a table will show these added feautres (passenger charactersistics) for the models examined in the following sections.**
 
 ### Model Evaluation with ShuffleSplit
-For all ombinations of hyperparameters and model varieities below, the models were evaluated based on their performance against validation datasets created from the original traiing data.  This was done to select models with reduced overfitting and better performance on unseen data.  This was done in the following manner:
+For all combinations of hyperparameters and model varieties below, the models were evaluated based on their performance against validation datasets created from the original traiing data.  This was done to select models with reduced overfitting and better performance on unseen data.  This was executed in the following manner:
 - The "ShuffleSplit" function was used to break the training data into 30 randomized training and validation datasets where 30% of the data for each split was allocated to the validation set
 - The cross-validation funciton within GridSearchCV was set to employ the ShuffleSplit function and run each model iteration through the same 30 training and validation splits
 - For each model iteration, the average model accuracy against the 30 training and validation datasets was reported
@@ -77,7 +75,7 @@ The general modeling strategy for optimizing each model type was executed as fol
 - Run a baseline model with default parameters to esablish an initial performance benchmark
 - Perform a "Coarse Parameter Optimization" with GridSearchCV to run the model on every cobination of a wide range of hyperparameter values
 - Perform a "Fine Tuning" optimization where the hyperparameter ranges are much smaller and centered around the best performing hyperparameter combinations (those producing ithe best model accuracy against validation datasets, explained above) from the coarse optimization step
-- The best performing hyperparameters from the fine tuning step were then used to run the final model for the paricular model type and output a final prediction of the validation data
+- Run the best performing hyperparameters from the fine tuning step to output a final prediction of the validation data
 - Repeat the above steps on all model types
 
 ### Model Comparison and Selection
