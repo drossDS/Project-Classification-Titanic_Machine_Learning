@@ -1,3 +1,5 @@
+[<< Back to Project Portfolio Website](https://drossds.github.io/Dan_Data_Science_Portfolio/)
+
 # Titanic Survival Model
 ***Implementing Classification Techniques to Predict Passenger Survival***
 
@@ -119,3 +121,12 @@ Further investigation of model variability is required.  In addition, the follow
 - Invest more effort into feature engineering and supporting data analysis
 - Treat some of the numerical features like class as categorical and not numerical data
 - Try additional model varieties and techniques such as support vector machines and gradient boosting
+
+# Contact Info
+- Email: <a href = "mailto: drossetti12@gmail.com" style="color: red">drossetti12@gmail.com</a>
+- LinkedIn: [https://www.linkedin.com/in/daniel-r-10882139/](https://www.linkedin.com/in/daniel-r-10882139/)
+- MIT ADSP Certificate:  [https://www.credential.net/0655323a-4a50-49d6-9dfc-a81e5e4b7ca8#gs.o5fack](https://www.credential.net/0655323a-4a50-49d6-9dfc-a81e5e4b7ca8#gs.o5fack)
+- MIT ADSP ePortfolio: [https://eportfolio.greatlearning.in/daniel-rossetti](https://eportfolio.greatlearning.in/daniel-rossetti)
+
+<br><br>
+[<< Back to Project Portfolio Website](https://drossds.github.io/Dan_Data_Science_Portfolio/)
